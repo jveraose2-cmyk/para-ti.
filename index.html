@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Para Ti 🌼</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fffbe6, #ffe066);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #inicio {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #d4af37;
+      margin-bottom: 1em;
+    }
+    button {
+      padding: 1em 2em;
+      font-size: 1.5em;
+      background-color: #f9d342;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #f9d342;
+      cursor: pointer;
+    }
+    #carrusel, #poema {
+      display: none;
+      width: 90%;
+      margin-top: 2em;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .verso, .poema {
+      font-size: 1.2em;
+      background-color: #fff8dc;
+      border-radius: 50%;
+      padding: 2em;
+      margin: 1em auto;
+      width: 80%;
+      text-align: center;
+      box-shadow: 0 0 15px #d4af37;
+      position: relative;
+    }
+    .verso::before, .poema::before {
+      content: "🌸🌼🌺🌻";
+      position: absolute;
+      top: -1.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="inicio">
+    <h1>Para ti</h1>
+    <button onclick="iniciarCarrusel()">🌼 Ver Versículos</button>
+  </div>
+
+  <div id="carrusel">
+    <div class="verso">Isaías 40:8 — “Sécase la hierba, marchítase la flor, mas la palabra del Dios nuestro permanece para siempre.”</div>
+    <div class="verso">Lucas 12:27 — “Considerad los lirios, cómo crecen; no trabajan ni hilan; pero os digo que ni Salomón en toda su gloria se vistió como uno de éstos.”</div>
+    <div class="verso">Cantares 2:1 — “Yo soy la rosa de Sarón, el lirio de los valles.”</div>
+    <div class="verso">Job 14:2 — “Como una flor brota y se marchita, y como una sombra huye y no permanece.”</div>
+  </div>
+
+  <div id="poema" class="poema">
+    En el jardín de Dios florece la esperanza, 🌼  
+    cada pétalo es promesa, cada aroma es confianza.  
+    Las flores amarillas brillan como el sol, ☀️  
+    recordándonos que Cristo es nuestro farol.  
+
+    Aunque el día se marchite como flor en el viento, 🍃  
+    su amor permanece, eterno y sin tiempo.  
+    Celebra este día con fe y alegría,  
+    porque en Jesús florece cada alma vacía. 🙏  
+  </div>
+
+  <script>
+    function iniciarCarrusel() {
+      document.getElementById('inicio').style.display = 'none';
+      document.getElementById('carrusel').style.display = 'block';
+
+      const versos = document.querySelectorAll('.verso');
+      let index = 0;
+
+      function mostrarVerso() {
+        versos.forEach(v => v.style.display = 'none');
+        if (index < versos.length) {
+          versos[index].style.display = 'block';
+          index++;
+        } else {
+          document.getElementById('carrusel').style.display = 'none';
+          document.getElementById('poema').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('poema').style.display = 'none';
+            document.getElementById('inicio').style.display = 'flex';
+          }, 10000); 
+        }
+      }
+
+      mostrarVerso();
+      const intervalo = setInterval(mostrarVerso, 5000); 
+    }
+  </script>
+</body>
+</html>
